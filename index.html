@@ -1,0 +1,1374 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercise 9.4 - Grade 3 Math Subtraction</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4f8, #ffffff);
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 10px; /* Decreased padding */
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 1000px; /* Adjusted max-width for better layout */
+      width: 100%;
+      padding: 20px; /* Decreased padding */
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      overflow: hidden; /* Prevent overflow */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 50px; /* Increased font size */
+      color: #2E86C1;
+      margin-bottom: 20px; /* Decreased margin */
+      text-align: center;
+      font-family: 'Comic Neue', cursive;
+    }
+
+    .progress-container {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      margin-bottom: 20px; /* Decreased margin */
+      height: 25px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #2E86C1;
+      transition: width 0.3s ease;
+    }
+
+    .question-box {
+      text-align: left;
+      font-size: 32px; /* Increased font size */
+    }
+
+    .question-text {
+      font-size: 40px; /* Increased font size */
+      margin-bottom: 20px; /* Decreased margin */
+      color: #34495E;
+      padding: 10px; /* Decreased padding */
+      background: #f9f9f9;
+      border-radius: 10px;
+      border: 2px solid #2E86C1;
+      font-family: 'Comic Neue', cursive;
+    }
+
+    /* Subtraction Styles */
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 20px; /* Decreased margin */
+    }
+
+    .subtraction-table {
+      width: 100%;
+      max-width: 600px; /* Adjusted max-width */
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-bottom: 20px; /* Decreased margin */
+    }
+
+    .subtraction-table th, .subtraction-table td {
+      border: 2px solid #2E86C1;
+      padding: 5px; /* Decreased padding */
+      text-align: center;
+      font-size: 32px; /* Increased font size */
+      width: 60px;
+      height: 60px;
+    }
+
+    .subtraction-table th {
+      background-color: #cce6ff;
+      font-weight: bold;
+    }
+
+    .rupees {
+      background-color: #cce6ff; /* Light blue for rupees */
+    }
+
+    .paise {
+      background-color: #d4f4dd; /* Light green for paise */
+    }
+
+    .subtraction-table .blank-space {
+      border: 2px solid #333;
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Answer Box Styles */
+    .subtraction-table .answer-box {
+      border: 2px solid #27ae60;
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Story Sums Styles */
+    .story-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px; /* Decreased margin */
+    }
+
+    .story-content {
+      padding: 15px; /* Decreased padding */
+      background: #f1faff;
+      border-radius: 10px;
+      border: 2px solid #2E86C1;
+      width: 100%;
+      margin-bottom: 15px; /* Decreased margin */
+      font-size: 24px; /* Increased font size */
+      text-align: left;
+    }
+
+    .story-steps {
+      padding: 15px; /* Decreased padding */
+      background: #fdf6e3;
+      border-radius: 10px;
+      border: 2px solid #2E86C1;
+      width: 100%;
+      font-size: 24px; /* Increased font size */
+      text-align: left;
+    }
+
+    .step-title {
+      font-size: 28px; /* Increased font size */
+      color: #2E86C1;
+      margin-bottom: 10px; /* Decreased margin */
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .step-content {
+      font-size: 24px; /* Increased font size */
+      margin-bottom: 15px; /* Decreased margin */
+      text-align: left;
+    }
+
+    .amount-box {
+      display: flex;
+      margin-bottom: 10px; /* Decreased margin */
+      font-size: 24px; /* Increased font size */
+      width: 100%;
+    }
+    .amount-box span {
+      margin-left: 10px; /* Decreased margin */
+    }
+
+    .blank-space-story {
+      border: 2px solid #333;
+      width: 50px;
+      height: 40px;
+      display: inline-block;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .final-answer {
+      margin-top: 20px; /* Decreased margin */
+      font-size: 24px;
+      font-weight: bold;
+      color: #27ae60;
+      text-align: left;
+    }
+
+    /* Step Styling */
+    .step {
+      display: none;
+      margin-bottom: 20px; /* Decreased margin */
+      padding: 10px; /* Decreased padding */
+      background: #e8f4ff;
+      border-left: 5px solid #2E86C1;
+      border-radius: 5px;
+      font-size: 24px; /* Increased font size */
+      color: #34495E;
+      text-align: left;
+    }
+
+    .step.solution {
+      border-left: 5px solid #27ae60;
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    /* Completion Message */
+    .completion-message {
+      font-size: 32px;
+      color: #27ae60;
+      margin-top: 30px; /* Decreased margin */
+      text-align: center;
+      font-family: 'Comic Neue', cursive;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      .question-text {
+        font-size: 32px;
+      }
+
+      .subtraction-table th, .subtraction-table td {
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .blank-space, .answer-box {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+      }
+
+      .step, .step-content, .step-title {
+        font-size: 20px;
+      }
+
+      .blank-space-story {
+        width: 40px;
+        height: 35px;
+        font-size: 20px;
+      }
+
+      .amount-box {
+        font-size: 20px;
+      }
+
+      .final-answer {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .question-text {
+        font-size: 28px;
+      }
+
+      .subtraction-table th, .subtraction-table td {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .blank-space, .answer-box {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+      }
+
+      .step, .step-content, .step-title {
+        font-size: 18px;
+      }
+
+      .blank-space-story {
+        width: 35px;
+        height: 30px;
+        font-size: 18px;
+      }
+
+      .amount-box {
+        font-size: 18px;
+      }
+
+      .final-answer {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .question-text {
+        font-size: 24px;
+      }
+
+      .subtraction-table th, .subtraction-table td {
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+      }
+
+      .blank-space, .answer-box {
+        width: 25px;
+        height: 25px;
+        font-size: 16px;
+      }
+
+      .step, .step-content, .step-title {
+        font-size: 16px;
+      }
+
+      .blank-space-story {
+        width: 30px;
+        height: 25px;
+        font-size: 16px;
+      }
+
+      .amount-box {
+        font-size: 16px;
+      }
+
+      .final-answer {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Exercise 9.4</h1>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div id="question-box">
+      <!-- Questions and steps are generated by JS -->
+    </div>
+    <div class="completion-message" id="completion-message" style="display: none;">
+      🎉 All questions completed! Great job! 🎉
+    </div>
+  </div>
+
+  <script>
+    // Define questions and their steps
+    const questions = [
+      // Subtraction Questions
+      {
+        type: 'subtraction',
+        question: "a. ₹45.35 – ₹16.15",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">4</th>
+                <th class="rupees">5</th>
+                <th>.</th>
+                <th class="paise">3</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">1</th>
+                <th class="rupees">6</th>
+                <th>.</th>
+                <th class="paise">1</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <td colspan="6">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td>.</td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      {
+        type: 'subtraction',
+        question: "b. ₹41.28 – ₹26.10",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">4</th>
+                <th class="rupees">1</th>
+                <th>.</th>
+                <th class="paise">2</th>
+                <th class="paise">8</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">2</th>
+                <th class="rupees">6</th>
+                <th>.</th>
+                <th class="paise">1</th>
+                <th class="paise">0</th>
+              </tr>
+              <tr>
+                <td colspan="6">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td>.</td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      {
+        type: 'subtraction',
+        question: "c. ₹93.60 – ₹32.48",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">9</th>
+                <th class="rupees">3</th>
+                <th>.</th>
+                <th class="paise">6</th>
+                <th class="paise">0</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">3</th>
+                <th class="rupees">2</th>
+                <th>.</th>
+                <th class="paise">4</th>
+                <th class="paise">8</th>
+              </tr>
+              <tr>
+                <td colspan="6">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td>.</td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      {
+        type: 'subtraction',
+        question: "d. ₹238.65 – ₹98.45",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">2</th>
+                <th class="rupees">3</th>
+                <th class="rupees">8</th>
+                <th>.</th>
+                <th class="paise">6</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">9</th>
+                <th class="rupees">8</th>
+                <th class="rupees">4</th>
+                <th>.</th>
+                <th class="paise">4</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <td colspan="7">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      {
+        type: 'subtraction',
+        question: "e. ₹426.35 – ₹314.47",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">4</th>
+                <th class="rupees">2</th>
+                <th class="rupees">6</th>
+                <th>.</th>
+                <th class="paise">3</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">3</th>
+                <th class="rupees">1</th>
+                <th class="rupees">4</th>
+                <th>.</th>
+                <th class="paise">4</th>
+                <th class="paise">7</th>
+              </tr>
+              <tr>
+                <td colspan="7">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      {
+        type: 'subtraction',
+        question: "f. ₹286.50 – ₹109.25",
+        content: `
+          <div class="table-container">
+            <table class="subtraction-table">
+              <tr class="carryover-rupees">
+                <th class="rupees">₹</th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr class="carryover-paise">
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="rupees"></th>
+                <th class="paise"></th>
+                <th class="paise"></th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">2</th>
+                <th class="rupees">8</th>
+                <th class="rupees">6</th>
+                <th>.</th>
+                <th class="paise">5</th>
+                <th class="paise">0</th>
+              </tr>
+              <tr>
+                <th class="rupees">₹</th>
+                <th class="rupees">1</th>
+                <th class="rupees">0</th>
+                <th class="rupees">9</th>
+                <th>.</th>
+                <th class="paise">2</th>
+                <th class="paise">5</th>
+              </tr>
+              <tr>
+                <td colspan="7">----------</td>
+              </tr>
+              <tr>
+                <td class="carryover-box"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span></span></td>
+                <td class="rupees"><span>.</span></td>
+                <td class="paise"><span></span></td>
+                <td class="paise"><span></span></td>
+              </tr>
+            </table>
+          </div>
+        `,
+        steps: 1
+      },
+      // Story Questions
+      {
+        type: 'story',
+        question: "a. Archana had ₹55.20. She bought a notebook for ₹22.10. How much money is left with her?",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Amount of money left with Archana.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>Initial Amount:</span>
+                <span>₹55.20</span>
+              </div>
+              <div class="amount-box">
+                <span>Notebook Cost:</span>
+                <span>₹22.10</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">5</th>
+                  <th class="rupees">5</th>
+                  <th>.</th>
+                  <th class="paise">2</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">2</th>
+                  <th class="rupees">2</th>
+                  <th>.</th>
+                  <th class="paise">1</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <td colspan="6">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td>.</td>
+                  <td class="paise"><span></span></td>
+                  <td class="paise"><span></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Archana has ₹<span>___________</span> left.
+          </div>`
+        ]
+      },
+      {
+        type: 'story',
+        question: "b. Mrs Sinha purchased a hand blender worth ₹425. She gave ₹500 to the shopkeeper. Find out the amount of money she will get in return.",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Change Mrs Sinha will receive.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>Hand Blender Cost:</span>
+                <span>₹425</span>
+              </div>
+              <div class="amount-box">
+                <span>Amount Given:</span>
+                <span>₹500</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+ 
+         
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+       
+     
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">5</th>
+                  <th class="rupees">0</th>
+                
+                  <th class="paise">0</th>
+            
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">4</th>
+                  <th class="rupees">2</th>
+             
+                  <th class="paise">5</th>
+              
+                </tr>
+                <tr>
+                  <td colspan="4">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+   
+            
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Mrs Sinha will receive ₹<span>__________</span> in return.
+          </div>`
+        ]
+      },
+      {
+        type: 'story',
+        question: "c. Mrs Saxena purchased a pastry worth ₹48.75. If she gave the shopkeeper ₹100, how much money did she get back?",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Change Mrs Saxena will receive.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>Pastry Cost:</span>
+                <span>₹48.75</span>
+              </div>
+              <div class="amount-box">
+                <span>Amount Given:</span>
+                <span>₹100</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">1</th>
+                  <th class="rupees">0</th>
+                  <th class="rupees">0</th>
+                  <th>.</th>
+                  <th class="paise">0</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees">4</th>
+                  <th class="rupees">8</th>
+                  <th>.</th>
+                  <th class="paise">7</th>
+                  <th class="paise">5</th>
+                </tr>
+                <tr>
+                  <td colspan="7">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td>.</td>
+                  <td class="paise"><span></span></td>
+                  <td class="paise"><span></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Mrs Saxena received ₹<span>___________</span> back.
+          </div>`
+        ]
+      },
+      {
+        type: 'story',
+        question: "d. Isha had ₹950.50 in her piggy bank. She took ₹210.50 from the piggy bank for her monthly expenses. How much money is left in the piggy bank now?",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Amount left in Isha's piggy bank.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>Initial Amount:</span>
+                <span>₹950.50</span>
+              </div>
+              <div class="amount-box">
+                <span>Amount Withdrawn:</span>
+                <span>₹210.50</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">9</th>
+                  <th class="rupees">5</th>
+                  <th class="rupees">0</th>
+                  <th>.</th>
+                  <th class="paise">5</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">2</th>
+                  <th class="rupees">1</th>
+                  <th class="rupees">0</th>
+                  <th>.</th>
+                  <th class="paise">5</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <td colspan="7">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td>.</td>
+                  <td class="paise"><span></span></td>
+                  <td class="paise"><span></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Isha has ₹<span>_________</span> left in the piggy bank.
+          </div>`
+        ]
+      },
+      {
+        type: 'story',
+        question: "e. Meenu has ₹628.84 with her. Her friend borrowed ₹415.70 from her. How much money is left with Meenu?",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Amount of money left with Meenu.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>Initial Amount:</span>
+                <span>₹628.84</span>
+              </div>
+              <div class="amount-box">
+                <span>Amount Borrowed:</span>
+                <span>₹415.70</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">6</th>
+                  <th class="rupees">2</th>
+                  <th class="rupees">8</th>
+                  <th>.</th>
+                  <th class="paise">8</th>
+                  <th class="paise">4</th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">4</th>
+                  <th class="rupees">1</th>
+                  <th class="rupees">5</th>
+                  <th>.</th>
+                  <th class="paise">7</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <td colspan="7">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td>.</td>
+                  <td class="paise"><span></span></td>
+                  <td class="paise"><span></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Meenu has ₹<span>__________</span> left.
+          </div>`
+        ]
+      },
+      {
+        type: 'story',
+        question: "f. Raj wants to purchase a t-shirt worth ₹615.42. He has ₹370.50 with him. How much more money does he need to purchase the t-shirt?",
+        steps: [
+          `<div class="step">
+            <div class="step-title">To Find:</div>
+            <div class="step-content">Additional money Raj needs.</div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Given:</div>
+            <div class="step-content">
+              <div class="amount-box">
+                <span>T-Shirt Cost:</span>
+                <span>₹615.42</span>
+              </div>
+              <div class="amount-box">
+                <span>Amount Raj Has:</span>
+                <span>₹370.50</span>
+              </div>
+            </div>
+          </div>`,
+          `<div class="step">
+            <div class="step-title">Calculation:</div>
+            <div class="table-container">
+              <table class="subtraction-table">
+                <tr class="carryover-rupees">
+                  <th class="rupees">₹</th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr class="carryover-paise">
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="rupees"></th>
+                  <th class="paise"></th>
+                  <th class="paise"></th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">6</th>
+                  <th class="rupees">1</th>
+                  <th class="rupees">5</th>
+                  <th>.</th>
+                  <th class="paise">4</th>
+                  <th class="paise">2</th>
+                </tr>
+                <tr>
+                  <th class="rupees">₹</th>
+                  <th class="rupees">3</th>
+                  <th class="rupees">7</th>
+                  <th class="rupees">0</th>
+                  <th>.</th>
+                  <th class="paise">5</th>
+                  <th class="paise">0</th>
+                </tr>
+                <tr>
+                  <td colspan="7">----------</td>
+                </tr>
+                <tr>
+                  <td class="carryover-box"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td class="rupees"><span></span></td>
+                  <td>.</td>
+                  <td class="paise"><span></span></td>
+                  <td class="paise"><span></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>`,
+          `<div class="step solution">
+            Raj needs ₹<span>___________</span> more to purchase the t-shirt.
+          </div>`
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let currentStepIndex = -1; // Start before the first step
+
+    const questionBox = document.getElementById('question-box');
+    const progressBar = document.getElementById('progress-bar');
+    const completionMessage = document.getElementById('completion-message');
+
+    // Calculate total steps
+    const totalSteps = questions.reduce((acc, q) => {
+      if(q.type === 'subtraction') return acc + 1;
+      if(q.type === 'story') return acc + q.steps.length;
+      return acc;
+    }, 0);
+
+    // Function to update progress bar
+    function updateProgress() {
+      let completedSteps = 0;
+      for(let i = 0; i < currentQuestionIndex; i++) {
+        if(questions[i].type === 'subtraction') {
+          completedSteps += 1;
+        } else if(questions[i].type === 'story') {
+          completedSteps += questions[i].steps.length;
+        }
+      }
+      completedSteps += currentStepIndex + 1;
+      const percentage = (completedSteps / totalSteps) * 100;
+      progressBar.style.width = percentage + '%';
+    }
+
+    // Function to display the current question
+    function showQuestion() {
+      const q = questions[currentQuestionIndex];
+      if(q.type === 'subtraction') {
+        questionBox.innerHTML = `
+          <div class="question-text">${q.question}</div>
+          ${q.content}
+        `;
+      } else if(q.type === 'story') {
+        questionBox.innerHTML = `
+          <div class="story-container">
+            <div class="story-content">
+              <div class="step-title">Question:</div>
+              <div class="step-content">${q.question}</div>
+            </div>
+            <div class="story-steps"></div>
+          </div>
+        `;
+      }
+      currentStepIndex = -1;
+      updateProgress();
+    }
+
+    // Function to display the next step
+    function showNextStep() {
+      const q = questions[currentQuestionIndex];
+      currentStepIndex++;
+      if(q.type === 'subtraction') {
+        if(currentStepIndex === 0) {
+          // Display the subtraction table
+          questionBox.innerHTML = `
+            <div class="question-text">${q.question}</div>
+            ${q.content}
+          `;
+          // Make blank spaces editable
+          const blanks = questionBox.querySelectorAll('.blank-space, .blank-space-story');
+          blanks.forEach(blank => {
+            blank.contentEditable = true;
+            blank.style.border = "2px solid #27ae60";
+            blank.style.cursor = "text";
+          });
+          updateProgress();
+        } else {
+          // Move to next question
+          currentQuestionIndex++;
+          if (currentQuestionIndex >= questions.length) {
+            // No more questions
+            questionBox.innerHTML = "";
+            progressBar.style.width = '100%';
+            completionMessage.style.display = 'block';
+            return;
+          }
+          showQuestion();
+        }
+      } else if(q.type === 'story') {
+        if(currentStepIndex >= q.steps.length) {
+          // Move to next question
+          currentQuestionIndex++;
+          if (currentQuestionIndex >= questions.length) {
+            // No more questions
+            questionBox.innerHTML = "";
+            progressBar.style.width = '100%';
+            completionMessage.style.display = 'block';
+            return;
+          }
+          showQuestion();
+          return;
+        }
+
+        // Add the step to the story-steps
+        const stepsContainer = questionBox.querySelector('.story-steps');
+        stepsContainer.innerHTML += q.steps[currentStepIndex];
+        // Display the step
+        const addedStep = stepsContainer.lastElementChild;
+        addedStep.style.display = 'block';
+
+        // Make blank spaces editable
+        const blanks = stepsContainer.querySelectorAll('.blank-space-story');
+        blanks.forEach(blank => {
+          blank.contentEditable = true;
+          blank.style.border = "2px solid #27ae60";
+          blank.style.cursor = "text";
+        });
+
+        updateProgress();
+      }
+    }
+
+    // Function to display the previous step
+    function showPreviousStep() {
+      if(currentQuestionIndex < 0) return;
+      const q = questions[currentQuestionIndex];
+      if(q.type === 'subtraction') {
+        if(currentStepIndex >= 0) {
+          // Remove answer from subtraction
+          const blanks = questionBox.querySelectorAll('.blank-space, .blank-space-story');
+          blanks.forEach(blank => {
+            blank.textContent = '';
+            blank.contentEditable = false;
+            blank.style.border = "2px solid #333";
+          });
+          currentStepIndex--;
+          updateProgress();
+        } else {
+          if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion();
+          }
+        }
+      } else if(q.type === 'story') {
+        if(currentStepIndex >= 0) {
+          const stepsContainer = questionBox.querySelector('.story-steps');
+          const steps = stepsContainer.querySelectorAll('.step, .step.solution');
+          if(steps.length > 0) {
+            steps[steps.length - 1].remove();
+            currentStepIndex--;
+            updateProgress();
+          }
+        } else {
+          if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion();
+          }
+        }
+      }
+    }
+
+    // Function to handle key presses for navigation
+    function handleKey(e) {
+      if (e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        showNextStep();
+      } else if (e.key === 'PageUp') {
+        e.preventDefault();
+        showPreviousStep();
+      }
+    }
+
+    // Event listener for key presses
+    document.addEventListener('keydown', handleKey);
+
+    // Initially show the first question
+    showQuestion();
+  </script>
+</body>
+</html>
